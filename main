@@ -1,0 +1,261 @@
+from pickle import FALSE
+import re
+import statistics
+
+sign_in_prompt= input("Please sign in using your Marymount email:")
+pattern = r'.*@marymount\.edu$'
+email_string= sign_in_prompt
+result= re.match(pattern,email_string)
+if result:
+  print("Sign in succesfull")
+
+
+
+  class_selection= int(input("""Which class do you need me for?  (Please choose a number listed below)
+                          1. MA 132
+                          2. PSC 103
+                          3.Binary to decimal
+                          4.Exit
+                          """))
+  if class_selection==1:
+    equation=int(input("""Which equation do you need solved(Please choose a number listed below
+                    1.Mean
+                    2.Median
+                    3.Mode
+                    4.Z Score
+                    5.Exit
+"""))
+    if equation==1:
+      equation_solve=int(input("""Would you like to see the equation or for me to solve it(Please select a number listed below)
+                                1.Show equation
+                                2.Solve the problem
+                                3.Quit
+    """))
+      if equation_solve==1:
+        print("Mean=  Sum of all values / number of values")
+      elif equation_solve==2:
+        mean_input=input("Please input the numbers in your problems using this format (1,2,3,4,5)")
+        mean_input_num = [float(i.strip()) for i in mean_input.split(",")]
+        length= len(mean_input_num)
+        sum= sum(mean_input_num)
+        mean= sum / length
+        print(f"The mean of your problem is {mean}")
+      else:
+        False
+    elif equation==2:
+      equation_solve=int(input("""Would you like to see the equation or for me to solve it(Please select a number listed below)
+                                1.Show equation
+                                2.Solve the problem
+                                3.Quit
+    """))
+      if equation_solve==1:
+        print ("Median= The middle value when the values are in order. Or it can be solved by (n+1)/2  (n being the number of values) ")
+      elif equation_solve==2:
+        median_input = input("Please input the numbers that you were given. (1,2,3,4,5)")
+        median_list = [float(i.strip()) for i in median_input.split(",")]
+        median_list.sort()
+        length = len(median_list)
+        if length % 2 == 0:
+            median = (median_list[length // 2 - 1] + median_list[length // 2]) / 2
+        else:
+            median = median_list[length // 2]
+        print(f"The median of your problem is {median}")
+      else:
+        False
+    elif equation==3:
+      equation_solve= int(input("""Would you like to see the equation or for me to solve it(Please select a number listed below)
+                                1.Show equation
+                                2.Solve the problem
+                                3.Quit
+    """))
+      if equation_solve==1:
+        print(""" To find mode you must find the number that occurs the most in your list.
+
+            Example: 5,2,6,5,3,5,1
+            5 is the mode in this example.
+            """)
+
+      elif equation_solve==2:
+        mode_input= input("Please give me the numbers using this format -------> (1,2,3,4,5,...etc)")
+        mode_num = [int(i.strip()) for i in mode_input.split(",")]
+        print("The mode is % s"% (statistics.mode(mode_num)))
+      else:
+        False
+    elif equation==4:
+      equation_solve= int(input("""Would you like to see the equation or for me to solve it(Please select a number listed below)
+                                1.Show equation
+                                2.Solve the problem
+                                3.Quit """))
+      if equation_solve==1:
+        print("z score = (variable - mean) / standard deviation  ")
+      elif equation_solve==2:
+        mean=float(input("What is the mean of your problem?"))
+        V=float(input("What is the variable of your problem?"))
+        SD=float(input("What is the standard deviation?"))
+        z_score=(V-mean)/SD
+        print(f"The z score is {z_score}")
+
+
+
+
+  elif class_selection==2:
+    psc_equations= int(input("""What would you like to solve (Select the equation by typing the number.)
+
+                              1.Converting Tempatures
+                              2.Average speed
+                              3.Average Acceleration
+                              4.Force
+                              5.Electric Current (Amps)
+                              6.Quit
+                              """))
+    if psc_equations==1:
+      eq_an=int(input("""Do you want the equation or would you like me to answer
+                            1.Equation
+                            2.Answer
+                            3.Quit
+                            Please input 1,2 or 3: """))
+      if eq_an==1:
+        print("""To convert Farenheight to celcius the equation is (F-32)* 5/9
+                   To convert Farenheight to Kelvin the equation is (F + 459.67)* 5/9
+                   To convert Celcius to Farenheight the equation is (C* 9/5) +32
+                   To convert Celcius to Kelvin the equation is C + 273.15
+                   To convert Kelvin to Farenheight the equation is (K* 9/5)- 459.67
+                   To convert Kelvin to Celcius the equation is K- 273.15 """)
+      elif eq_an==2:
+        def temp_convert():
+          temp_num=float(input("Please enter the temopature value(Example: 52)"))
+          first_unit=input("Enter the tempature unit you have(Farenheight= F , Celcius= C , Kelvin= K) :")
+          second_unit=input("Enter tempature unit that you would like to convert to(Farenheight= F , Celcius= C , Kelvin= K) :")
+
+          if first_unit=='F':
+            if second_unit=='C':
+              return (temp_num - 32)* 5/9
+            elif second_unit=='K':
+              return (temp_num + 459.67) * 5/9
+            else:
+              return temp_num
+          elif first_unit=='C':
+            if second_unit=='F':
+              return(temp_num * 9/5) + 32
+            elif second_unit=='K':
+              return temp_num + 273.15
+            else:
+               return temp_num
+          elif first_unit=='K':
+            if second_unit=='F':
+              return (temp_num * 9/5) - 459.67
+            elif second_unit=='C':
+              return temp_num - 273.15
+            else:
+              return temp_num
+          else:
+            print("inavlid input")
+
+        temp_result = temp_convert()
+        print(temp_result)
+
+
+
+
+    elif psc_equations==2:
+      av_sp=int(input("""Would you like the equation or for me to answer
+                          1.Equation
+                          2.Answer for me
+                          3.Quit
+                          Please answer by inputing 1,2, or 3:"""))
+      if av_sp==1:
+        print("Average speed = Distance / time")
+      elif av_sp==2:
+        distance=float(input("Please give me your distance(Example: 25)  :"))
+        time=float(input("Enter the total time :"))
+        av_sp_eq= distance/time
+        print(f"The average speed is {av_sp_eq}. add what every the distance unit is and the time unit (Example:{av_sp_eq}Mph)")
+    elif psc_equations==3:
+      av_ac=int(input("""Would you like the equation or for me to answer
+                          1.Equation
+                          2.Answer for me
+                          3.Quit
+                          Please answer by inputing 1,2, or 3:"""))
+      if av_ac==1:
+        print("""Average acceleration=Change in velocity / time
+                 To get Change in velocity the equation is Final velocity - Orginal velocity
+                 """)
+      elif av_ac==2:
+        final_velocity=float(input("Please tell me the Final velocity :"))
+        initial_velocity=float(input("Please tell me the initial velocity:"))
+        time=float(input("Please give me the time :"))
+        av_accel=(final_velocity-initial_velocity)/time
+        print(f"The average acceleration is {av_accel}. Please dont forget to add the units to this problem.")
+      else:
+        False
+    elif psc_equations==4:
+      force=int(input("""Would you like the equation or for me to answer
+                          1.Equation
+                          2.Answer for me
+                          3.Quit
+                          Please answer by inputing 1,2, or 3:"""))
+      if force==1:
+        print("Force = constant * charge 1 * charge 2/ (distance between chargers)^2")
+      elif force==2:
+        charge1=float(input("Please give me the first charge:  "))
+        charge2=float(input("Please give me the second charge:"))
+        dis=float(input("Please give me the distance between charges:" ))
+        k=9*10^9
+
+        Force_an=k*(charge1 * charge2) / dis**2
+        print(f"The Force is {Force_an}")\
+
+      else:
+        False
+    elif psc_equations==5:
+      amp_q=int(input("""Would you like the equation or for me to answer
+                          1.Equation
+                          2.Answer for me
+                          3.Quit
+                          Please answer by inputing 1,2, or 3:"""))
+      if amp_q==1:
+        print("Electric current = coulubms / time in seconds")
+      elif amp_q==2:
+        coulumbs=float(input("What are the coulumbs in your problem"))
+        time=float(input("What is the time in seconds in your problem"))
+        elec_current=coulumbs / time
+        print(f"The electrical current is {elec_current} amps")
+      else:
+        False
+    else:
+      False
+
+  elif class_selection==3:
+    eq_an=int(input("""Would you like the equation or for me to answer
+                          1.Equation
+                          2.Answer for me
+                          3.Quit
+                          Please answer by inputing 1,2, or 3:"""))
+    if eq_an==1:
+      print("""To convert binry to decimal you have to first do 2^ the position of the digit. EX:10101.  There is 5 positions, our first digit is in the 4 position because we start from 0
+       We would then get 2^4, 2^3, 2^2, 2^1, 2^0 Which would be 16, 8 , 4, 2, 1
+       Next we multiply that by binary in that position, 16 * 1, 8*0, 4*1 , 2*0 , 1*1 = 16, 0 , 4 ,0, 1
+       Lastly you add them up and that is your binary number = 21""")
+    elif eq_an==2:
+      def binary(user_in):
+        decimal=0
+        to_the_power= len(user_in) - 1
+        for digit in user_in:
+          decimal+=int(digit) * (2 ** to_the_power)
+          to_the_power -= 1
+        return decimal
+
+      user_in=int(input("Please enter the binary:"))
+      decimal= binary(str(user_in))
+      print(f"The decimal value is {decimal}")
+    else:
+      False
+
+
+
+  else:
+    False
+
+
+else:
+  print("Invalid email address ")
